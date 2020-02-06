@@ -3,10 +3,9 @@
 use Illuminate\Http\Request;
 
 
+// 认证接口
 Route::group(['prefix' => 'auth'], function ($router) {
-    Route::any('login', 'AuthController@login');
-    Route::any('logout', 'AuthController@logout');
-    Route::any('refresh', 'AuthController@refresh');
-    Route::any('me', 'AuthController@me');
-
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
 });

@@ -21,6 +21,8 @@ class JWTRole
      */
     public function handle($request, Closure $next)
     {
+
+
         $this->authenticate($request);
         return $next($request);
     }
