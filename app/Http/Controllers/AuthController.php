@@ -14,28 +14,19 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
+
+    protected $guard;
+
     /**
      * Create a new AuthController instance.
      * @param Request $request
      */
     public function __construct(Request $request)
     {
-        $allowedGuard = ['user', 'admin'];
+        // 根据角色选择门面类型
+        $this->guard = $request->post('role');
 
-        $guard = $request->post('_');
-
-        if (!in_array($guard, $allowedGuard)) {
-            return $this->error(ApiError::ILLEGAL_REQUEST);
-        }
-
-        $guard = $request->post('role');
-
-        $this->middleware('auth:user')->except(['login']);
-    }
-
-    protected function guard()
-    {
-
+        $this->middleware("jwt.role")->except(['login']);
     }
 
     /**
@@ -47,9 +38,7 @@ class AuthController extends Controller
     {
         $credentials = $request->only(['username', 'password']);
 
-        $guard = $request->post('role');
-
-        if (!$token = auth($guard)->attempt($credentials)) {
+        if (!$token = auth($this->guard)->attempt($credentials)) {
             return $this->error(ApiError::UNAUTHORIZED);
         }
 
@@ -65,8 +54,9 @@ class AuthController extends Controller
      */
     public function me()
     {
-
-        return $this->success(['user' => auth()->user()]);
+        return $this->success([
+            'user' => auth()->user()
+        ]);
     }
 
     /**
