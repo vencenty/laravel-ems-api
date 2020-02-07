@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Row;
 
-class UsersImport implements OnEachRow
+class StudentImport implements OnEachRow
 {
     use Importable;
 

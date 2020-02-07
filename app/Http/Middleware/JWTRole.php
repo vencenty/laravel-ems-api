@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\ExamSite;
 use App\Models\ExamSiteAdmin;
 use App\Models\ExamCenterAdmin;
 use App\Models\Student;
@@ -50,7 +51,7 @@ class JWTRole
             case sha1(Student::class):
                 $guard = 'student';
                 break;
-            case sha1(ExamSiteAdmin::class):
+            case sha1(ExamSite::class):
                 $guard = 'exam_site';
                 break;
             case sha1(ExamCenterAdmin::class):

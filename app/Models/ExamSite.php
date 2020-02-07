@@ -25,17 +25,13 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSiteAdmin whereUsername($value)
  * @mixin \Eloquent
  */
-class ExamSiteAdmin extends Authenticatable implements JWTSubject
+class ExamSite extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-//    const EXAM_CENTER = 1; // 考试中心（教育局）
-//
-//    const EXAMINER = 2; // 考评员
-//
-//    const SUPERVISOR = 3; // 督导员
+    protected $table = 'exam_site';
 
-    protected $table = 'exam_site_admin';
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
