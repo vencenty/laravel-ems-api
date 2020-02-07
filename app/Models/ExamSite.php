@@ -24,6 +24,18 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSiteAdmin wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSiteAdmin whereUsername($value)
  * @mixin \Eloquent
+ * @property string|null $sn 学校编号
+ * @property string|null $address 学校地址
+ * @property string|null $contact_person 联系人
+ * @property string|null $contact_mobile 联系电话
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSite whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSite whereContactMobile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSite whereContactPerson($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSite whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSite whereSn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSite whereUpdatedAt($value)
  */
 class ExamSite extends Authenticatable implements JWTSubject
 {
