@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'user',
+        'guard' => 'student',
         'passwords' => 'users',
     ],
 
@@ -41,16 +41,22 @@ return [
             'provider' => 'users',
         ],
 
-        'user' => [
+        'student' => [
             'driver' => 'jwt',
-            'provider' => 'users',
+            'provider' => 'student',
             'hash' => false,
         ],
-        'admin' => [
+        'exam_site' => [
             'driver' => 'jwt',
-            'provider' => 'admins',
+            'provider' => 'examSite',
             'hash' => false,
         ],
+        'exam_center' => [
+            'driver' => 'jwt',
+            'provider' => 'examCenter',
+            'hash' => false,
+        ]
+
     ],
 
     /*
@@ -71,19 +77,21 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
-        ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'student' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Student::class,
+        ],
+        'examSite' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\ExamSiteAdmin::class,
+        ],
+        'examCenter' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\ExamCenterAdmin::class,
+        ]
+
+
     ],
 
     /*

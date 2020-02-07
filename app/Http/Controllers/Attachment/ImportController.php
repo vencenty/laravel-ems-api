@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Attachment;
 
 use App\Http\Controllers\Controller;
 use App\Imports\UsersImport;
-use App\Models\User;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 

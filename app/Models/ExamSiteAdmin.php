@@ -16,20 +16,26 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string|null $password 密码
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Admin whereUsername($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSiteAdmin newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSiteAdmin newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSiteAdmin query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSiteAdmin whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSiteAdmin whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSiteAdmin wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSiteAdmin whereUsername($value)
  * @mixin \Eloquent
  */
-class Admin extends Authenticatable implements JWTSubject
+class ExamSiteAdmin extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-    protected $table = 'admin';
+//    const EXAM_CENTER = 1; // 考试中心（教育局）
+//
+//    const EXAMINER = 2; // 考评员
+//
+//    const SUPERVISOR = 3; // 督导员
+
+    protected $table = 'exam_site_admin';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -50,4 +56,6 @@ class Admin extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+
 }

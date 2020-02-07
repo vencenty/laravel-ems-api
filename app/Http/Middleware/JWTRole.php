@@ -2,8 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Admin;
-use App\Models\User;
+use App\Models\ExamSiteAdmin;
+use App\Models\ExamCenterAdmin;
+use App\Models\Student;
 use Closure;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Payload;
@@ -46,18 +47,19 @@ class JWTRole
         $guard = null;
         // 切换验证Model
         switch ($hashModel) {
-            case sha1(User::class):
-                $guard = 'user';
+            case sha1(Student::class):
+                $guard = 'student';
                 break;
-            case sha1(Admin::class):
-                $guard = 'admin';
+            case sha1(ExamSiteAdmin::class):
+                $guard = 'exam_site';
+                break;
+            case sha1(ExamCenterAdmin::class):
+                $guard = 'exam_center';
                 break;
             default:
                 break;
         }
 
         auth()->shouldUse($guard);
-
-
     }
 }

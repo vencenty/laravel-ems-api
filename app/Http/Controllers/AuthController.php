@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Components\ApiError;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\UserLoginRequest;
-use App\Models\Admin;
-use App\Models\User;
+use App\Models\ExamSiteAdmin;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -84,5 +86,30 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60
         ];
+    }
+
+    /**
+     * 重置密码
+     * @param ResetPasswordRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function resetPassword(ResetPasswordRequest $request)
+    {
+        /** @var Student $user */
+        $user = auth()->user();
+
+        // 原始密码
+        $originPassword = $request->post('origin_password');
+        // 新密码
+        $password = $request->post('password');
+        // 检查密码是否正确
+        if(!Hash::check($originPassword, $user->password)) {
+            return $this->error(ApiError::USER_PASSWORD_ERROR);
+        }
+
+        $user->password = bcrypt($password);
+        $user->save();
+
+        return $this->success();
     }
 }

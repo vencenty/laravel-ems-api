@@ -17,16 +17,16 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string|null $password 密码
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUsername($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student whereUsername($value)
  * @mixin \Eloquent
  */
-class User extends Authenticatable implements JWTSubject
+class Student extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -34,7 +34,7 @@ class User extends Authenticatable implements JWTSubject
      * 表名称
      * @var string
      */
-    protected $table = 'user';
+    protected $table = 'student';
 
     /**
      * 字段黑名单

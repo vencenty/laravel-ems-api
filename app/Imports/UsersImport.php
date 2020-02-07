@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\User;
+use App\Models\Student;
 use Illuminate\Database\Eloquent\Model;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\OnEachRow;
@@ -29,13 +29,7 @@ class UsersImport implements OnEachRow
 
         $password =  bcrypt(substr($username, -6));
 
-        User::create([
-            'name' => $name,
-            'username' => $username,
-            'password' => $password
-        ]);
-
-
+        Student::updateOrCreate(['username' => $username],['password' => $password,'name' => $name]);
     }
 
 }
