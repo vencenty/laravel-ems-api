@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UserType;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AttachmentRequest extends AbstractRequest
@@ -16,7 +17,8 @@ class AttachmentRequest extends AbstractRequest
     public function rules()
     {
         return [
-            'attachment' => 'required'
+            'attachment' => 'required',
+            'type' =>['required', new UserType()]
         ];
     }
 
