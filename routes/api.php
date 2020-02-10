@@ -18,9 +18,9 @@ Route::group(['prefix' => 'auth'], function ($router) {
 
 Route::namespace('Attachment')->group(function () {
     // 导入学生花名册
-    Route::post('attachment/import/user', 'ImportController@user');
+    Route::post('attachment/import/student', 'ImportController@student');
     // 导入考试站
     Route::post('attachment/import/exam-site', 'ImportController@examSite');
-
 });
 
+Route::get('/exam-site', 'ExamSiteController@index');

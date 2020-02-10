@@ -18,7 +18,6 @@ class AttachmentRequest extends AbstractRequest
     {
         return [
             'attachment' => 'required',
-            'type' =>['required', new UserType()]
         ];
     }
 

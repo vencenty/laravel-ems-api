@@ -16,7 +16,7 @@ class ExamSiteImport implements OnEachRow
     public function onRow(Row $row)
     {
         $rowIndex = $row->getIndex();
-        $row      = $row->toArray();
+        $row = $row->toArray();
 
         if ($rowIndex == 1) return;
 
@@ -24,10 +24,11 @@ class ExamSiteImport implements OnEachRow
             throw new ExcelFormatErrorException("Excel格式不正确,请严格按照[考试站编号,考试站名称,考试站账号,考试站密码,考试站地址,联系人,联系电话]顺序填写");
         }
 
-        ExamSite::create([
+        ExamSite::updateOrCreate([
+            'username' => $row[2], // 用户名
+        ], [
             'sn' => $row[0], // 考试站编号
             'name' => $row[1], // 考试站名称
-            'username' => $row[2], // 用户名
             'password' => bcrypt($row[3]), // 考试站密码
             'address' => $row[4], // 考试站地址
             'contact_person' => $row[5], // 考试站联系人
