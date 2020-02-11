@@ -7,8 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class AttachmentRequest extends AbstractRequest
 {
-
-
     /**
      * Get the validation rules that apply to the request.
      *

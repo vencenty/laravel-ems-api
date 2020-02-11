@@ -88,7 +88,7 @@ return [
         ],
         'examCenter' => [
             'driver' => 'eloquent',
-            'model' => App\Models\ExamCenterAdmin::class,
+            'model' => App\Models\ExamCenter::class,
         ]
 
 

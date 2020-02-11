@@ -2,33 +2,37 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
+
 /**
- * App\Models\User
+ * App\Models\Student
  *
  * @property int $id
- * @property string|null $name 真实姓名
- * @property string|null $username 身份证号码
+ * @property string|null $username 用户名
  * @property string|null $password 密码
+ * @property string|null $identity 身份证号码
+ * @property string|null $name 学生姓名
+ * @property int|null $locked 是否锁定
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $created_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student whereIdentity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student whereLocked($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student whereUsername($value)
  * @mixin \Eloquent
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student whereUpdatedAt($value)
  */
 class Student extends Authenticatable implements JWTSubject
 {

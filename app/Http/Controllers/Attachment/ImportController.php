@@ -25,6 +25,7 @@ class ImportController extends Controller
      */
     protected $attachmentField = 'attachment';
 
+
     /**
      * 根据不同用户模型导入用户
      *
@@ -34,7 +35,6 @@ class ImportController extends Controller
     {
         $this->attachment = $request->file($this->attachmentField);
     }
-
 
     /**
      * 导入学生花名册
