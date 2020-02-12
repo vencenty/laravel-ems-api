@@ -23,6 +23,8 @@ Route::namespace('Attachment')->group(function () {
     Route::post('attachment/import/exam-site', 'ImportController@examSite');
     // 导入试题
     Route::post('attachment/import/question', 'ImportController@question');
+    // 导出考试题
+    Route::any('attachment/export/question', 'ExportController@question');
 });
 
 Route::get('/exam-site', 'ExamSiteController@index');
@@ -30,8 +32,8 @@ Route::get('/exam-site', 'ExamSiteController@index');
 
 // 资源路由
 Route::resources([
-    'training-plans' =>'TrainingPlanController',
-    'exam-rooms' =>'ExamRoomController',
-    'questions' =>'QuestionController'
+    'training-plans' => 'TrainingPlanController',
+    'exam-rooms' => 'ExamRoomController',
+    'questions' => 'QuestionController'
 ]);
 

@@ -60,8 +60,15 @@ class Question extends AbstractModel
         'options' => 'json',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
     /**
-     * 当前试题属于什么科目
+     * 一对一关联试题科目
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function subject()
@@ -69,5 +76,21 @@ class Question extends AbstractModel
         return $this->belongsTo(Subject::class, 'subject_id', 'id');
     }
 
+    /**
+     * 检查数据库是否有类似题目
+     *
+     * @param $newTitle
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public static function hasSimilar($newTitle)
+    {
+        $model = (new self);
+        foreach ($model->title as $title) {
+            similar_text($newTitle, $title, $percent);
+            if ($percent > 90) {
+                return $model->error('已经有类似题目了,请确认后添加');
+            }
+        }
+    }
 
 }

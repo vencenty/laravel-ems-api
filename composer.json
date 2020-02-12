@@ -11,6 +11,7 @@
         "php": "^7.2",
         "ext-json": "*",
         "barryvdh/laravel-ide-helper": "^2.6",
+        "dompdf/dompdf": "^0.8.4",
         "encore/laravel-admin": "^1.7",
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^1.0",
@@ -21,8 +22,7 @@
         "overtrue/laravel-lang": "~3.0",
         "spatie/laravel-permission": "^3.6",
         "tymon/jwt-auth": "1.0.0-rc5.1",
-        "vencenty/laravel-enhance": "dev-master",
-        "ext-http": "*"
+        "vencenty/laravel-enhance": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

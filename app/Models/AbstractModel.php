@@ -9,6 +9,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\URL;
 use Schema;
+use Vencenty\LaravelEnhance\Traits\JsonResponse;
 
 /**
  * App\Models\AbstractModel
@@ -20,6 +21,7 @@ use Schema;
  */
 class AbstractModel extends Model
 {
+    use JsonResponse;
 
     protected $guarded = [];
 
