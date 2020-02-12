@@ -20,8 +20,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ExamRoom extends AbstractModel
 {
+
     protected $table = 'exam_room';
 
     public $timestamps = false;
+
 
 }

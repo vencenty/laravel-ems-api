@@ -21,7 +21,8 @@
         "overtrue/laravel-lang": "~3.0",
         "spatie/laravel-permission": "^3.6",
         "tymon/jwt-auth": "1.0.0-rc5.1",
-        "vencenty/laravel-enhance": "dev-master"
+        "vencenty/laravel-enhance": "dev-master",
+        "ext-http": "*"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

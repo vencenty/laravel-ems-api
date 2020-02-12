@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Attachment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AttachmentRequest;
 use App\Imports\ExamSiteImport;
+use App\Imports\QuestionImport;
 use App\Imports\StudentImport;
 use App\Models\ExamSite;
 use App\Models\Student;
@@ -57,5 +58,17 @@ class ImportController extends Controller
         Excel::import(new ExamSiteImport, $this->attachment);
         return $this->success("导入成功");
     }
+
+    /**
+     * 导入试题
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function question()
+    {
+        Excel::import(new QuestionImport, $this->attachment);
+        return $this->success("试题导入成功");
+    }
+
 
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Skill;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class DebugController extends Controller

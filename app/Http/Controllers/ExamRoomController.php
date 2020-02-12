@@ -3,18 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\ExamRoom;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class ExamRoomController extends Controller
 {
 
     public function index()
     {
-        $model = new ExamRoom();
-
-//        ExamRoom::when('people_limit', function (){})
-
-        return $this->success(ExamRoom::paginate());
+        return $this->success(ExamRoom::getList([], [
+            'callback' => function ($model) {
+                $model->name = '傻逼' . $model->name;
+            }
+        ]));
     }
 
 
@@ -44,7 +48,7 @@ class ExamRoomController extends Controller
 
     public function destroy($id)
     {
-        if(ExamRoom::destroy($id)) {
+        if (ExamRoom::destroy($id)) {
             return $this->success();
         };
         return $this->error();
