@@ -5,6 +5,41 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * App\Models\Question
+ *
+ * @property int $id
+ * @property string|null $title 题目
+ * @property string|null $answer 答案
+ * @property int|null $level 难易程度
+ * @property array|null $options 选项
+ * @property int|null $subject_id 所属学科
+ * @property string|null $type 1单选 2 判断 3多选
+ * @property \Illuminate\Support\Carbon|null $created_at 创建时间
+ * @property \Illuminate\Support\Carbon|null $updated_at 修改时间
+ * @property \Illuminate\Support\Carbon|null $deleted_at 删除时间
+ * @property string|null $reference_answer 参考答案
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Question onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question whereAnswer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question whereLevel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question whereOptions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question whereReferenceAnswer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question whereSubjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Question withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Question withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Question extends AbstractModel
 {
     use SoftDeletes;
@@ -20,13 +55,18 @@ class Question extends AbstractModel
 
     protected $table = 'question';
 
+
     protected $casts = [
         'options' => 'json',
     ];
 
-    public function getAnswerAttribute($value)
+    /**
+     * 当前试题属于什么科目
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function subject()
     {
-        dd($value);
+        return $this->belongsTo(Subject::class, 'subject_id', 'id');
     }
 
 

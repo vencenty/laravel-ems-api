@@ -8,6 +8,7 @@ use App\Imports\ExamSiteImport;
 use App\Imports\QuestionImport;
 use App\Imports\StudentImport;
 use App\Models\ExamSite;
+use App\Models\Question;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -66,8 +67,16 @@ class ImportController extends Controller
      */
     public function question()
     {
+
+        $questionImport = new QuestionImport;
+
+
         Excel::import(new QuestionImport, $this->attachment);
-        return $this->success("试题导入成功");
+        return $this->success([
+            'success_row' => $questionImport::$successRow,
+            'failure_row' => $questionImport::$failureRow,
+            'similar_question' => $questionImport::$similarQuestions
+        ]);
     }
 
 
