@@ -27,12 +27,14 @@ class QuestionImport implements OnEachRow
 
     /**
      * 导入成功的题目条数
+     *
      * @var int
      */
     public static $successRow = 0;
 
     /**
      * 导入失败的题目条数
+     *
      * @var int
      */
     public static $failureRow = 0;
