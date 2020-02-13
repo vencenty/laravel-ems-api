@@ -21,12 +21,11 @@ class StudentImport implements OnEachRow
 {
 
 
-
     /**
-     * 逐行处理EXCEL文件
+     * 逐行处理Excel文件
      *
      * @param Row $row
-     * @throws ExcelFormatErrorException
+     * @return bool
      */
     public function onRow(Row $row)
     {

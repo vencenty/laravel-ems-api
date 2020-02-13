@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers\Attachment;
 
+use App\Components\ApiError;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AttachmentRequest;
 use App\Imports\ExamSiteImport;
 use App\Imports\QuestionImport;
 use App\Imports\StudentImport;
+use App\Imports\SupervisorImport;
 use App\Models\ExamSite;
 use App\Models\Question;
 use App\Models\Student;
+use App\Models\Supervisor;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\Finder\Iterator\ExcludeDirectoryFilterIterator;
 
 class ImportController extends Controller
 {
@@ -77,6 +81,20 @@ class ImportController extends Controller
             'failure_row' => $questionImport::$failureRow,
             'similar_question' => $questionImport::$similarQuestions
         ]);
+    }
+
+    public function supervisor(Request $request)
+    {
+        $role = $request->post('role');
+
+        if (!$role || !in_array($role, [Supervisor::EVALUATE_STAFF, Supervisor::MONITOR_STAFF])) {
+            return $this->error(ApiError::UNKONW_ROLE);
+        }
+
+
+        Excel::import(new SupervisorImport($role), $this->attachment);
+
+        return $this->success("导入成功");
     }
 
 

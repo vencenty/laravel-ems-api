@@ -12,4 +12,5 @@ class ApiError
      * 登录授权相关错误码
      */
     const USER_PASSWORD_ERROR = [-1001, '用户密码错误'];
+    const UNKONW_ROLE = [-1001, '未知角色'];
 }

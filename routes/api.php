@@ -23,6 +23,8 @@ Route::namespace('Attachment')->group(function () {
     Route::post('attachment/import/exam-site', 'ImportController@examSite');
     // 导入试题
     Route::post('attachment/import/question', 'ImportController@question');
+    // 导入考评员|督导员
+    Route::any('attachment/import/supervisor', 'ImportController@supervisor');
     // 导出考试题
     Route::any('attachment/export/question', 'ExportController@question');
 });
