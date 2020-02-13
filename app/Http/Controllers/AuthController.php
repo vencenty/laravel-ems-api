@@ -16,7 +16,11 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
-
+    /**
+     * 登录用户的角色
+     *
+     * @var array|string|null
+     */
     protected $guard;
 
     /**
@@ -33,6 +37,7 @@ class AuthController extends Controller
 
     /**
      * 获取验证
+     *
      * @param UserLoginRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -51,7 +56,7 @@ class AuthController extends Controller
 
 
     /**
-     * Log the user out (Invalidate the token).
+     * 用户退出登录,Token也会失效
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -62,7 +67,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Refresh a token.
+     * 刷新Token
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -73,7 +78,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Get the token array structure.
+     * 获取令牌数组结构
      *
      * @param string $token
      *
@@ -90,6 +95,7 @@ class AuthController extends Controller
 
     /**
      * 重置密码
+     *
      * @param ResetPasswordRequest $request
      * @return \Illuminate\Http\JsonResponse
      */

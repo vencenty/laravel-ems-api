@@ -41,31 +41,9 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ExamSite whereUsername($value)
  * @mixin \Eloquent
  */
-class ExamSite extends Authenticatable implements JWTSubject
+class ExamSite extends AbstractAuthModel
 {
-    use Notifiable;
-
     protected $table = 'exam_site';
 
-    protected $guarded = [];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password'
-    ];
-
-
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
 }

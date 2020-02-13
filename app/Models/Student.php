@@ -34,9 +34,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Student whereUsername($value)
  * @mixin \Eloquent
  */
-class Student extends Authenticatable implements JWTSubject
+class Student extends AbstractAuthModel
 {
-    use Notifiable;
 
     /**
      * 表名称
@@ -44,32 +43,4 @@ class Student extends Authenticatable implements JWTSubject
      */
     protected $table = 'student';
 
-    /**
-     * 字段黑名单
-     * @var array
-     */
-    protected $guarded = [];
-
-
-    // Rest omitted for brevity
-
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
 }

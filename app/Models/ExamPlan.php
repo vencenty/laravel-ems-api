@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int|null $in_plan 是否在年度计划内
  * @property int|null $num 人数
- * @property int|null $status 0 未开始
+ * @property int|null $status 0 未开始 
  * 1 开始
  * -1 未结束
  * @property int|null $skill_id 考试技能ID

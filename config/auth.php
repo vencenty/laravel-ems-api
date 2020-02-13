@@ -40,23 +40,30 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
+        // 学生
         'student' => [
             'driver' => 'jwt',
             'provider' => 'student',
             'hash' => false,
         ],
+        // 考试站
         'exam_site' => [
             'driver' => 'jwt',
             'provider' => 'examSite',
             'hash' => false,
         ],
+        // 考试中心
         'exam_center' => [
             'driver' => 'jwt',
             'provider' => 'examCenter',
             'hash' => false,
+        ],
+        // 管理人员角色(考评员,督导员)
+        'supervisor' => [
+            'driver' => 'jwt',
+            'provider' => 'supervisor',
+            'hash' => false,
         ]
-
     ],
 
     /*
@@ -89,6 +96,10 @@ return [
         'examCenter' => [
             'driver' => 'eloquent',
             'model' => App\Models\ExamCenter::class,
+        ],
+        'supervisor' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Supervisor::class,
         ]
 
 

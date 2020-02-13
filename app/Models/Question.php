@@ -15,10 +15,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property array|null $options 选项
  * @property int|null $subject_id 所属学科
  * @property string|null $type 1单选 2 判断 3多选
+ * @property string|null $reference_answer 参考答案
  * @property \Illuminate\Support\Carbon|null $created_at 创建时间
  * @property \Illuminate\Support\Carbon|null $updated_at 修改时间
  * @property \Illuminate\Support\Carbon|null $deleted_at 删除时间
- * @property string|null $reference_answer 参考答案
+ * @property-read \App\Models\Subject|null $subject
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Question newQuery()
