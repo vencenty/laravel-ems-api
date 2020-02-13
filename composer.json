@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2",
         "ext-json": "*",
+        "barryvdh/laravel-dompdf": "^0.8.5",
         "barryvdh/laravel-ide-helper": "^2.6",
         "dompdf/dompdf": "^0.8.4",
         "encore/laravel-admin": "^1.7",

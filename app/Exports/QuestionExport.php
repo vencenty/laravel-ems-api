@@ -29,7 +29,6 @@ class QuestionExport extends DefaultValueBinder implements FromQuery, WithHeadin
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-
             }
         ];
     }
