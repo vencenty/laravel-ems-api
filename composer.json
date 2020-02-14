@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.0",
         "maatwebsite/excel": "^3.1",
         "overtrue/laravel-lang": "~3.0",
+        "overtrue/wechat": "~4.0",
         "spatie/laravel-permission": "^3.6",
         "tymon/jwt-auth": "1.0.0-rc5.1",
         "vencenty/laravel-enhance": "dev-master"

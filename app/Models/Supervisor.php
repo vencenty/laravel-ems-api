@@ -43,6 +43,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Supervisor whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Supervisor whereUsername($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Subject[] $subjects
+ * @property-read int|null $subjects_count
  */
 class Supervisor extends AbstractAuthModel
 {
@@ -64,4 +66,16 @@ class Supervisor extends AbstractAuthModel
     {
         return $this->hasMany(AssessRecord::class, 'supervisor_id', 'id');
     }
+
+    /**
+     * 老师可考评的职业范围
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class, 'supervisor_subject_map', 'supervisor_id', 'subject_id')
+            ->withPivot('subject_level_id');
+    }
+
 }

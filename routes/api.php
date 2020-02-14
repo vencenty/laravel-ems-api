@@ -16,6 +16,7 @@ Route::group(['prefix' => 'auth'], function ($router) {
 });
 
 
+// 附件接口,包含所有导入接口
 Route::namespace('Attachment')->group(function () {
     // 导入学生花名册
     Route::post('attachment/import/student', 'ImportController@student');
@@ -36,6 +37,7 @@ Route::get('/exam-site', 'ExamSiteController@index');
 Route::resources([
     'training-plans' => 'TrainingPlanController',
     'exam-rooms' => 'ExamRoomController',
-    'questions' => 'QuestionController'
+    'questions' => 'QuestionController',
+    'supervisors' => 'SupervisorController'
 ]);
 
