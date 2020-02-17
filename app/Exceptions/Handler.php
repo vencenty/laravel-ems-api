@@ -2,10 +2,12 @@
 
 namespace App\Exceptions;
 
+use App\Components\ApiError;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Vencenty\LaravelEnhance\Traits\JsonResponse;
 
 class Handler extends ExceptionHandler
@@ -54,49 +56,53 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        $identity = get_class($exception);
-
-
-        // 开启调试模式
-        if (env('APP_DEBUG')) {
-            switch ($identity) {
-                case ValidationException::class:
-                    $result = $this->convertValidationExceptionToResponse($exception, $request);
-                    break;
-//                case MethodNotAllowedHttpException::class:
-//                    $result = ['message' => $exception->getMessage()];
-//                    break;
-                default:
-                    $result = $exception->getMessage();
-                    break;
-            }
-            return $this->error($result);
-        }
         return parent::render($request, $exception);
+    }
+
+    /**
+     * 重写返回客户端的Json响应
+     *
+     * @param Exception $e
+     * @return array
+     */
+    protected function convertExceptionToArray(Exception $e)
+    {
+        $error = 500;
+
+        return config('app.debug') ? [
+            'error' => $error,
+            'message' => $e->getMessage(),
+            'exception' => get_class($e),
+            'file' => $e->getFile(),
+            'line' => $e->getLine(),
+            'trace' => collect($e->getTrace())->map(function ($trace) {
+                return \Arr::except($trace, ['args']);
+            })->all(),
+        ] : [
+            'error' => $error,
+            'message' => $this->isHttpException($e) ? $e->getMessage() : 'Server Error',
+        ];
     }
 
 
     /**
-     * 重写表单验证方法
+     * 重写表单验证失败返回的接口形式
      *
-     * @param ValidationException|Exception $e
      * @param \Illuminate\Http\Request $request
-     * @return array|\Symfony\Component\HttpFoundation\Response
+     * @param ValidationException $exception
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
-    protected function convertValidationExceptionToResponse(ValidationException $e, $request)
+    public function invalidJson($request, ValidationException $exception)
     {
         $errorMessage = [];
-        foreach ($e->errors() as $key => $errors) {
+        foreach ($exception->errors() as $key => $errors) {
             foreach ($errors as $error) {
                 array_push($errorMessage, $error);
             }
         }
-
-        return ['message' => $errorMessage];
+        return $this->error([
+            'message' => $errorMessage,
+        ], $exception->status);
     }
-
-
-
-
 
 }
