@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AttachmentRequest;
 use App\Imports\ExamSiteImport;
 use App\Imports\QuestionImport;
+use App\Imports\RosterImport;
 use App\Imports\StudentImport;
 use App\Imports\SupervisorImport;
 use App\Models\ExamSite;
@@ -43,9 +44,9 @@ class ImportController extends Controller
     }
 
     /**
-     * 导入学生花名册
+     * 导入学生
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function student()
     {
@@ -56,7 +57,7 @@ class ImportController extends Controller
     /**
      * 导入考试站信息
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function examSite()
     {
@@ -67,7 +68,7 @@ class ImportController extends Controller
     /**
      * 导入试题
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function question()
     {
@@ -83,6 +84,12 @@ class ImportController extends Controller
         ]);
     }
 
+    /**
+     * 导入监察老师
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function supervisor(Request $request)
     {
         $role = $request->post('role');
@@ -95,6 +102,38 @@ class ImportController extends Controller
         Excel::import(new SupervisorImport($role), $this->attachment);
 
         return $this->success("导入成功");
+    }
+
+
+    /**
+     * 导入学生花名册
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function roster()
+    {
+        $roster = Excel::toCollection(new RosterImport(), $this->attachment)[0];
+
+        $student = [];
+
+        foreach ($roster as $rowIndex => $row) {
+            if ($rowIndex == 0) {
+                continue;
+            }
+
+            array_push($student, [
+                'name' => $row[0],
+                'identity' => $row[1],
+                'contact' => $row[2],
+                'theory_score' => $row[3],
+                'skill_score' => $row[4],
+            ]);
+
+        }
+
+        return $this->success([
+            'roster' => $student
+        ]);
     }
 
 

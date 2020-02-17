@@ -28,6 +28,8 @@ Route::namespace('Attachment')->group(function () {
     Route::any('attachment/import/supervisor', 'ImportController@supervisor');
     // 导出考试题
     Route::any('attachment/export/question', 'ExportController@question');
+    // 导入花名册,不导入数据库,只返回结果
+    Route::any('attachment/import/roster', 'ImportController@roster');
 });
 
 Route::get('/exam-site', 'ExamSiteController@index');

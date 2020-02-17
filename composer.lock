@@ -6481,12 +6481,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vencenty/laravel-enhance.git",
-                "reference": "0eb2085384525d1a67a7d2a620bbb520e60d3170"
+                "reference": "ebc76f2d0973b70535bca6d1c5fba3ff9018841f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vencenty/laravel-enhance/zipball/0eb2085384525d1a67a7d2a620bbb520e60d3170",
-                "reference": "0eb2085384525d1a67a7d2a620bbb520e60d3170",
+                "url": "https://api.github.com/repos/Vencenty/laravel-enhance/zipball/ebc76f2d0973b70535bca6d1c5fba3ff9018841f",
+                "reference": "ebc76f2d0973b70535bca6d1c5fba3ff9018841f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6511,7 +6511,7 @@
                     "email": "yanchengtian0536@163.com"
                 }
             ],
-            "time": "2020-02-17T05:59:29+00:00"
+            "time": "2020-02-17T07:38:19+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
