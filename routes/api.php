@@ -33,12 +33,13 @@ Route::namespace('Attachment')->group(function () {
 Route::get('/exam-site', 'ExamSiteController@index');
 
 
-// 资源路由
+// 资源路由,所有的增删改查接口全部放这儿
 Route::resources([
     'training-plans' => 'TrainingPlanController',
     'exam-rooms' => 'ExamRoomController',
     'questions' => 'QuestionController',
     'supervisors' => 'SupervisorController',
-    'subject' => 'SubjectController'
+    'subject' => 'SubjectController',
+    'subject-levels' =>'SubjectLevelController'
 ]);
 

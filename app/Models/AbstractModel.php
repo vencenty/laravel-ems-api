@@ -89,7 +89,7 @@ class AbstractModel extends Model
             'list' => $list,
             'total' => $total,
             'page_total' => $pageTotal,
-            'fields_struct' => Schema::getColumnListing($originModel->getTable()),
+            'struct' => Schema::getColumnListing($originModel->getTable()),
         ], $options['appendParams']);
 
     }

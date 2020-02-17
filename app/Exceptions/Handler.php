@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Vencenty\LaravelEnhance\Traits\JsonResponse;
 
 class Handler extends ExceptionHandler
@@ -53,31 +54,49 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        $identity = get_class($exception);
 
-//        if (env('APP_DEBUG')) {
-//            return $this->error($exception->getMessage());
-//        }
 
+        // 开启调试模式
+        if (env('APP_DEBUG')) {
+            switch ($identity) {
+                case ValidationException::class:
+                    $result = $this->convertValidationExceptionToResponse($exception, $request);
+                    break;
+//                case MethodNotAllowedHttpException::class:
+//                    $result = ['message' => $exception->getMessage()];
+//                    break;
+                default:
+                    $result = $exception->getMessage();
+                    break;
+            }
+            return $this->error($result);
+        }
         return parent::render($request, $exception);
     }
 
+
     /**
-     * 重写表单验证错误方法
-     * @param ValidationException $e
+     * 重写表单验证方法
+     *
+     * @param ValidationException|Exception $e
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * @return array|\Symfony\Component\HttpFoundation\Response
      */
     protected function convertValidationExceptionToResponse(ValidationException $e, $request)
     {
         $errorMessage = [];
         foreach ($e->errors() as $key => $errors) {
-            foreach($errors as $error) {
+            foreach ($errors as $error) {
                 array_push($errorMessage, $error);
             }
         }
 
-        return $this->error(['message' => $errorMessage]);
+        return ['message' => $errorMessage];
     }
+
+
+
 
 
 }
