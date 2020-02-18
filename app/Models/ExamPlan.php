@@ -27,4 +27,45 @@ use Illuminate\Database\Eloquent\Model;
 class ExamPlan extends AbstractModel
 {
     protected $table = 'exam_plan';
+
+    /**
+     * 考试等待审批状态
+     *
+     * @var int
+     */
+    const APPROVING = 0;
+
+    /**
+     * 考试审批通过
+     *
+     * @var int
+     */
+    const APPROVAL_PASS = 1;
+
+    /**
+     * 考试审批拒绝
+     *
+     * @var int
+     */
+    const APPROVAL_REJECT = -1;
+
+    /**
+     * 以后多个技能考试安排
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function skillExamArranges()
+    {
+        return $this->hasMany(SkillExamArrange::class, 'exam_plan_id', 'id');
+    }
+
+    /**
+     * 有多个理论考试安排
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function theoryExamArranges()
+    {
+        return $this->hasMany(TheoryExamArrange::class, 'exam_plan_id', 'id');
+    }
 }

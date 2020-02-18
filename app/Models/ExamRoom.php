@@ -20,10 +20,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ExamRoom extends AbstractModel
 {
+    /** @var int 常规考场 */
+    const COMMON = 0;
+
+    /** @var int 补考考场 */
+    const RESIT = 1;
+
 
     protected $table = 'exam_room';
 
     public $timestamps = false;
-
 
 }
