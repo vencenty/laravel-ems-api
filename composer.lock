@@ -4170,16 +4170,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "3.7.1",
+            "version": "3.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "3aff5437b3e66e877dcc3158f6cfaaced8e468ab"
+                "reference": "ce5d82fc5f5300575876c42131f9e9ae2e18f6aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/3aff5437b3e66e877dcc3158f6cfaaced8e468ab",
-                "reference": "3aff5437b3e66e877dcc3158f6cfaaced8e468ab",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/ce5d82fc5f5300575876c42131f9e9ae2e18f6aa",
+                "reference": "ce5d82fc5f5300575876c42131f9e9ae2e18f6aa",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4240,7 +4240,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2020-02-15T17:52:58+00:00"
+            "time": "2020-02-17T17:06:57+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -6481,12 +6481,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Vencenty/laravel-enhance.git",
-                "reference": "ebc76f2d0973b70535bca6d1c5fba3ff9018841f"
+                "reference": "043c9a617834dece4f385eea4fdb0f54a24ea480"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Vencenty/laravel-enhance/zipball/ebc76f2d0973b70535bca6d1c5fba3ff9018841f",
-                "reference": "ebc76f2d0973b70535bca6d1c5fba3ff9018841f",
+                "url": "https://api.github.com/repos/Vencenty/laravel-enhance/zipball/043c9a617834dece4f385eea4fdb0f54a24ea480",
+                "reference": "043c9a617834dece4f385eea4fdb0f54a24ea480",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6494,6 +6494,9 @@
                         "preferred": true
                     }
                 ]
+            },
+            "require": {
+                "laravel/framework": "^6.2"
             },
             "type": "library",
             "autoload": {
@@ -6511,7 +6514,7 @@
                     "email": "yanchengtian0536@163.com"
                 }
             ],
-            "time": "2020-02-17T07:38:19+00:00"
+            "time": "2020-02-18T08:46:13+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

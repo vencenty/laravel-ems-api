@@ -18,6 +18,8 @@ Route::group(['prefix' => 'auth'], function ($router) {
 
 // 附件接口,包含所有导入接口
 Route::namespace('Attachment')->group(function () {
+    // 上传用户照片
+    Route::post('attachment/upload/photo', 'UploadController@photo');
     // 导入学生花名册
     Route::post('attachment/import/student', 'ImportController@student');
     // 导入考试站

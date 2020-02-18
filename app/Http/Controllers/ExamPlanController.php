@@ -32,10 +32,9 @@ class ExamPlanController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
+     * @param SkillExamArrangeRequest $request
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function store(SkillExamArrangeRequest $request)
     {
