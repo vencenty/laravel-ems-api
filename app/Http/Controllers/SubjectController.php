@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class SubjectController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 展示列表
      *
      * @return \Illuminate\Http\Response
      */
@@ -19,44 +19,46 @@ class SubjectController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 存储资源
      *
-     * @param \Illuminate\Http\Request $request
+     * @param SubjectRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(SubjectRequest $request)
     {
-        return $this->success(Subject::create($request->all()));
+        return $this->success($request->post());
     }
 
     /**
-     * Display the specified resource.
+     * 展示资源
      *
-     * @param \App\Models\Subject $subject
+     * @param Subject $subject
      * @return \Illuminate\Http\Response
      */
     public function show(Subject $subject)
     {
-        return $this->success($subject->with('levels')->find($subject->id));
+        return $this->success($subject);
     }
 
     /**
-     * Update the specified resource in storage.
+     * 更细资源
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Subject $subject
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Subject $subject
+     * @throws \Throwable
      */
     public function update(Request $request, Subject $subject)
     {
-        $subject->levels()->sync(...$request->post('id'));
+        $subject->fill($request->post())->saveOrFail();
+        $this->success();
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除资源
      *
-     * @param \App\Models\Subject $subject
+     * @param Subject $subject
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Subject $subject)
     {

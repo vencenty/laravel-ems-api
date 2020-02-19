@@ -43,7 +43,7 @@ Route::resources([
     'exam-rooms' => 'ExamRoomController',
     'questions' => 'QuestionController',
     'supervisors' => 'SupervisorController',
-    'subject' => 'SubjectController',
+    'subjects' => 'SubjectController',
     'subject-levels' => 'SubjectLevelController',
     'exam-plans' => 'ExamPlanController'
 ]);

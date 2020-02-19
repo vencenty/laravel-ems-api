@@ -26,17 +26,21 @@ use Illuminate\Database\Eloquent\Model;
 class Subject extends AbstractModel
 {
 
+    /**
+     * 表名
+     *
+     * @var string
+     */
     protected $table = 'subject';
 
-    public function levels()
-    {
-        return $this->belongsToMany(SubjectLevel::class, 'subject_level_map', 'subject_id', 'subject_level_id');
-    }
-
-    public function supervisors()
-    {
-        return $this->belongsToMany(Supervisor::class, 'supervisor_subject_map', 'subject_id', 'supervisor_id')
-            ->withPivot(['subject_level_id']);
-    }
+    /**
+     * 默认隐藏字段
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 
 }
