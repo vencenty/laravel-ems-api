@@ -67,6 +67,8 @@ class QuestionImport implements OnEachRow
                 return true;
             }
         }
+
+
         return false;
     }
 
@@ -81,15 +83,16 @@ class QuestionImport implements OnEachRow
         $rowIndex = $row->getIndex();
         $row = $row->toArray();
 
-        if ($rowIndex == 1) return true;
+
+        if ($rowIndex == 1 || is_null($row[0])) return true;
 
 
         $question = Question::make([
             'title' => $row[0],
-            'level' => $row[1],
-            'type' => $row[2],
-            'options' => $row[3],
-            'answer' => $row[4],
+            'options' => $row[1],
+            'answer' => $row[2],
+            'type' => $row[3],
+            'level' => $row[4],
             'subject_id' => $row[5],
             'reference_answer' => $row[6],
         ]);
@@ -116,7 +119,7 @@ class QuestionImport implements OnEachRow
         }
 
 
-        if ($question->save()) {
+        if ($question->saveOrFail()) {
             self::$successRow++;
         } else {
             self::$failureRow++;

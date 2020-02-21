@@ -41,16 +41,16 @@ class SubjectController extends Controller
     }
 
     /**
-     * 更细资源
-     *
      * @param Request $request
      * @param Subject $subject
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      * @throws \Throwable
      */
     public function update(Request $request, Subject $subject)
     {
+
         $subject->fill($request->post())->saveOrFail();
-        $this->success();
+        return $this->success();
     }
 
     /**

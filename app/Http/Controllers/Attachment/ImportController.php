@@ -10,13 +10,9 @@ use App\Imports\QuestionImport;
 use App\Imports\RosterImport;
 use App\Imports\StudentImport;
 use App\Imports\SupervisorImport;
-use App\Models\ExamSite;
-use App\Models\Question;
-use App\Models\Student;
 use App\Models\Supervisor;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use Symfony\Component\Finder\Iterator\ExcludeDirectoryFilterIterator;
 
 class ImportController extends Controller
 {
@@ -72,9 +68,7 @@ class ImportController extends Controller
      */
     public function question()
     {
-
         $questionImport = new QuestionImport;
-
 
         Excel::import(new QuestionImport, $this->attachment);
         return $this->success([

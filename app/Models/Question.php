@@ -45,16 +45,45 @@ class Question extends AbstractModel
 {
     use SoftDeletes;
 
-    /** @var int 单选 */
+    /**
+     * 单选题
+     *
+     * @var int
+     */
     const SINGLE_CHOICE = 1;
 
-    /** @var int 判断题 */
+    /**
+     * 判断
+     *
+     * @var int
+     */
     const JUDGE = 2;
 
-    /** @var int 多选 */
+    /**
+     * 多选
+     *
+     * @var int
+     */
     const MULTIPLE_CHOICE = 3;
 
+    const LEVEL = [
+        1 => 'A',
+        2 => 'B',
+        3 => 'C'
+    ];
+
     protected $table = 'question';
+
+    /**
+     * 获取等级属性
+     *
+     * @param $value
+     * @return mixed
+     */
+    public function getLevelAttribute($value)
+    {
+        return self::LEVEL[$value];
+    }
 
 
     protected $casts = [

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class QuestionController extends Controller
 {
@@ -16,7 +17,7 @@ class QuestionController extends Controller
      * 添加考试题目,如果强制添加,那么不再检查题目相似度
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -27,6 +28,7 @@ class QuestionController extends Controller
         }
         return $this->success(Question::create(request()->all())->only('id'));
     }
+
 
     /**
      * Display the specified resource.
@@ -48,7 +50,7 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
     }
 
     /**
